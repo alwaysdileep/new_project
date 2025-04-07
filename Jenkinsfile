@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         // Set your Docker Hub username and password as environment variables
-        DOCKER_USERNAME = credentials('docker-username')
-        DOCKER_PASSWORD = credentials('docker-password')
+        DOCKER_USERNAME = credentials('alwaysdileep7')
+        DOCKER_PASSWORD = credentials('docker-creds')
         IMAGE_NAME = 'my-app'
         DOCKER_REGISTRY = 'docker.io'  // You can change this if using a different registry
     }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub
-                    withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
                     }
                 }
